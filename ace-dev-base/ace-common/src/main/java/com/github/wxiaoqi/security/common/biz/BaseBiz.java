@@ -53,13 +53,13 @@ public abstract class BaseBiz<M extends Mapper<T>, T> {
 
 
     public void insert(T entity) {
-        EntityUtils.setCreatAndUpdatInfo(entity);
+        EntityUtils.setCreatAndUpdateInfo(entity);
         mapper.insert(entity);
     }
 
 
     public void insertSelective(T entity) {
-        EntityUtils.setCreatAndUpdatInfo(entity);
+        EntityUtils.setCreatAndUpdateInfo(entity);
         mapper.insertSelective(entity);
     }
 
@@ -97,7 +97,7 @@ public abstract class BaseBiz<M extends Mapper<T>, T> {
     public TableResultResponse<T> selectByQuery(Query query) {
         Class<T> clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];
         Example example = new Example(clazz);
-        if(query.entrySet().size()>0) {
+        if (query.entrySet().size() > 0) {
             Example.Criteria criteria = example.createCriteria();
             for (Map.Entry<String, Object> entry : query.entrySet()) {
                 criteria.andLike(entry.getKey(), "%" + entry.getValue().toString() + "%");
@@ -107,5 +107,4 @@ public abstract class BaseBiz<M extends Mapper<T>, T> {
         List<T> list = mapper.selectByExample(example);
         return new TableResultResponse<T>(result.getTotal(), list);
     }
-
 }

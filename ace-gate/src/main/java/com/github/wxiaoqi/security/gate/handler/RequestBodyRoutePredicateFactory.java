@@ -44,8 +44,7 @@ import java.util.function.Predicate;
 @Slf4j
 @Component
 @Order(1)
-public class RequestBodyRoutePredicateFactory
-        extends AbstractRoutePredicateFactory<RequestBodyRoutePredicateFactory.Config> {
+public class RequestBodyRoutePredicateFactory extends AbstractRoutePredicateFactory<RequestBodyRoutePredicateFactory.Config> {
     protected static final Log LOGGER = LogFactory.getLog(RequestBodyRoutePredicateFactory.class);
     private final List<HttpMessageReader<?>> messageReaders;
 
@@ -58,13 +57,13 @@ public class RequestBodyRoutePredicateFactory
         super(RequestBodyRoutePredicateFactory.Config.class);
         this.messageReaders = messageReaders;
     }
-    public static final String REQUEST_BODY_ATTR = "requestBodyAttr";
 
+    public static final String REQUEST_BODY_ATTR = "requestBodyAttr";
 
     @Override
     public AsyncPredicate<ServerWebExchange> applyAsync(Config config) {
         return exchange -> {
-            if (!"POST".equals(exchange.getRequest().getMethodValue())&&!"PUT".equals(exchange.getRequest().getMethodValue())) {
+            if (!"POST".equals(exchange.getRequest().getMethodValue()) && !"PUT".equals(exchange.getRequest().getMethodValue())) {
                 return Mono.just(true);
             }
             Object cachedBody = exchange.getAttribute(REQUEST_BODY_ATTR);
@@ -80,9 +79,9 @@ public class RequestBodyRoutePredicateFactory
                 return Mono.just(true);
             } else {
                 return ServerWebExchangeUtils.cacheRequestBodyAndRequest(exchange, (serverHttpRequest) -> ServerRequest.create(exchange.mutate().request(serverHttpRequest).build(), this.messageReaders).bodyToMono(String.class).defaultIfEmpty("").doOnNext((objectValue) -> {
-                    if(StringUtils.isBlank(objectValue)){
+                    if (StringUtils.isBlank(objectValue)) {
                         exchange.getAttributes().put(REQUEST_BODY_ATTR, JSON.toJSONString(exchange.getRequest().getQueryParams()));
-                    }else {
+                    } else {
                         exchange.getAttributes().put(REQUEST_BODY_ATTR, objectValue);
                     }
                 }).map((objectValue) -> true));
@@ -93,8 +92,7 @@ public class RequestBodyRoutePredicateFactory
 
     @Override
     public Predicate<ServerWebExchange> apply(Config config) {
-        throw new UnsupportedOperationException(
-                "ReadBodyPredicateFactory is only async.");
+        throw new UnsupportedOperationException("ReadBodyPredicateFactory is only async.");
     }
 
     public static class Config {

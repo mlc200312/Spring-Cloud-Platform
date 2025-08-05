@@ -33,7 +33,7 @@ spring:
     host: 127.0.0.1
     jedis:
       pool:
-          max-active: 20
+        max-active: 20
   sleuth:
     enabled: true
     http:
@@ -64,7 +64,7 @@ auth:
 logging:
   level:
     com.github.wxiaoqi.security.sample: info
-#    com
+    #    com
     org.springframework: info
 
 
@@ -101,7 +101,7 @@ ribbon:
   OkToRetryOnAllOperations: false
 
 hystrix:
-  threadpool:
+  thread-pool:
     default:
       coreSize: 1000 ## 并发执行的最大线程数，默认10
       maxQueueSize: 1000 ## BlockingQueue的最大队列数

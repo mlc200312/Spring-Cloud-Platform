@@ -13,13 +13,12 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan({"com.github.wxiaoqi.security.auth.client"})
 public class AutoConfiguration {
     @Bean
-    ServiceAuthConfig getServiceAuthConfig(){
+    ServiceAuthConfig getServiceAuthConfig() {
         return new ServiceAuthConfig();
     }
 
     @Bean
-    UserAuthConfig getUserAuthConfig(){
+    UserAuthConfig getUserAuthConfig() {
         return new UserAuthConfig();
     }
-
 }

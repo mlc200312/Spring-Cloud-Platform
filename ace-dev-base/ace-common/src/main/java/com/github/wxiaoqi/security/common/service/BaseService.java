@@ -26,14 +26,6 @@ public interface BaseService<T> {
     T selectById(Object id);
 
     /**
-     * 根据ID集合来查询
-     *
-     * @param ids
-     * @return
-     */
-//    List<T> selectListByIds(List<Object> ids);
-
-    /**
      * 查询列表
      *
      * @param entity
@@ -48,14 +40,6 @@ public interface BaseService<T> {
      * @return
      */
     List<T> selectListAll();
-
-
-    /**
-     * 查询总记录数
-     *
-     * @return
-     */
-//    Long selectCountAll();
 
     /**
      * 查询总记录数
@@ -94,7 +78,6 @@ public interface BaseService<T> {
      */
     void deleteById(Object id);
 
-
     /**
      * 根据id更新
      *
@@ -109,19 +92,4 @@ public interface BaseService<T> {
      * @param entity
      */
     void updateSelectiveById(T entity);
-
-    /**
-     * 根据ID集合批量删除
-     *
-     * @param ids
-     */
-//    void deleteBatchByIds(List<Object> ids);
-
-
-    /**
-     * 批量更新
-     *
-     * @param entitys
-     */
-//    void updateBatch(List<T> entitys);
 }

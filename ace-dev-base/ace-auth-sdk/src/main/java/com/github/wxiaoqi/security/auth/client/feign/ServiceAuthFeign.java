@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * Created by ace on 2017/9/15.
  */
-@FeignClient(value = "${auth.serviceId}",configuration = {})
+@FeignClient(value = "${auth.serviceId}", configuration = {})
 public interface ServiceAuthFeign {
-    @RequestMapping(value = "/client/userPubKey",method = RequestMethod.POST)
-    public ObjectRestResponse<byte[]> getUserPublicKey(@RequestParam("clientId") String clientId, @RequestParam("secret") String secret);
-
+    @RequestMapping(value = "/client/userPubKey", method = RequestMethod.POST)
+    ObjectRestResponse<byte[]> getUserPublicKey(@RequestParam("clientId") String clientId, @RequestParam("secret") String secret);
 }

@@ -148,7 +148,7 @@ public class PermissionService {
             BeanUtils.copyProperties(menu, node);
             trees.add(node);
         }
-        return TreeUtil.bulid(trees, root);
+        return TreeUtil.build(trees, root);
     }
 
     public FrontUserV2 getUserInfoV2() {
@@ -214,9 +214,9 @@ public class PermissionService {
         // 配置路由权限
         List<AccessRouteTree> accessRoutes = new ArrayList<>();
         for (Integer menuId : menuIds) {
-            accessRoutes.addAll(TreeUtil.bulid(routeTrees, menuId));
+            accessRoutes.addAll(TreeUtil.build(routeTrees, menuId));
         }
-        frontUser.setAccessMenus(TreeUtil.bulid(menuTrees, AdminCommonConstant.ROOT));
+        frontUser.setAccessMenus(TreeUtil.build(menuTrees, AdminCommonConstant.ROOT));
         frontUser.setAccessHeader(header);
         frontUser.setAccessRoutes(accessRoutes);
         frontUser.setUserPermissions(permissions);

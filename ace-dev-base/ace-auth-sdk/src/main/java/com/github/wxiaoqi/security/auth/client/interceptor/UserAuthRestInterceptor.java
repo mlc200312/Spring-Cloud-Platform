@@ -20,11 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  * Created by ace on 2017/9/10.
  */
 public class UserAuthRestInterceptor extends HandlerInterceptorAdapter {
-    private Logger logger = LoggerFactory.getLogger(UserAuthRestInterceptor.class);
-
     @Autowired
     private UserAuthUtil userAuthUtil;
-
     @Autowired
     private UserAuthConfig userAuthConfig;
 

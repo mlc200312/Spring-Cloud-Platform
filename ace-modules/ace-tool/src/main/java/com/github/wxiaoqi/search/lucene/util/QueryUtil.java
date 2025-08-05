@@ -44,7 +44,6 @@ public class QueryUtil {
         return query.replace("/", " ").replace("\\", " ");
     }
 
-
     public static Query query(String query, Analyzer analyzer, String... fields) throws ParseException {
         BooleanQuery.setMaxClauseCount(32768);
         query = queryStringFilter(query);  /*过滤非法字符*/

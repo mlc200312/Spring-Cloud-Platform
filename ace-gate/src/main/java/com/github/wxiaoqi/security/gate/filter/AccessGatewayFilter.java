@@ -91,7 +91,7 @@ public class AccessGatewayFilter implements GlobalFilter {
             ServerHttpRequest build = mutate.build();
             return gatewayFilterChain.filter(serverWebExchange.mutate().request(build).build());
         }
-        IJWTInfo user = null;
+        IJWTInfo user;
         try {
             // 判断用户token，获取用户信息
             user = getJWTUser(request, mutate);

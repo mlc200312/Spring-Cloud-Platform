@@ -33,6 +33,7 @@ import java.io.Serializable;
 
 /**
  * 云存储配置信息
+ *
  * @author ace
  */
 @Configuration
@@ -41,7 +42,7 @@ public class CloudStorageConfig implements Serializable {
     private static final long serialVersionUID = 1L;
 
     //类型 1：七牛  2：阿里云  3：腾讯云
-    @Range(min=1, max=3, message = "类型错误")
+    @Range(min = 1, max = 3, message = "类型错误")
     private Integer type;
 
     //七牛绑定的域名
@@ -227,11 +228,11 @@ public class CloudStorageConfig implements Serializable {
         this.qcloudBucketName = qcloudBucketName;
     }
 
-	public String getQcloudRegion() {
-		return qcloudRegion;
-	}
+    public String getQcloudRegion() {
+        return qcloudRegion;
+    }
 
-	public void setQcloudRegion(String qcloudRegion) {
-		this.qcloudRegion = qcloudRegion;
-	}
+    public void setQcloudRegion(String qcloudRegion) {
+        this.qcloudRegion = qcloudRegion;
+    }
 }

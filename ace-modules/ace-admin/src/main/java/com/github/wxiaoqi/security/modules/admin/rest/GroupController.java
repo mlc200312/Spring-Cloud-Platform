@@ -130,6 +130,6 @@ public class GroupController extends BaseController<GroupBiz, Group> {
             BeanUtils.copyProperties(group, node);
             trees.add(node);
         }
-        return TreeUtil.bulid(trees,root) ;
+        return TreeUtil.build(trees,root) ;
     }
 }

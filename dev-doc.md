@@ -42,7 +42,7 @@ ace-security
 ```
 
 ### `环境须知!`
-- mysql一个，redis一个，sentiel一个，nacos注册中心一个
+- mysql一个，redis一个，sentinel，nacos注册中心一个
 - jdk1.8
 - IDE插件一个，`lombok插件`，具体百度即可
 - 搭建
@@ -54,7 +54,7 @@ ace-security
 下载完后端代码后，记得先安装`lombok插件`，否则你的IDE会报代码缺失。
 
 ### 运行步骤
-- 先启动redis、redis、mysql以及nacos注册中心
+- 先启动sentinel、redis、mysql以及nacos注册中心
 - 运行数据库脚本：依次运行数据库：ace-modules/ace-admin/db/init.sql
 - 依次配置修改：ace-admin/src/main/resources/application.yml、ace-gate/src/main/resources/application.yml
 

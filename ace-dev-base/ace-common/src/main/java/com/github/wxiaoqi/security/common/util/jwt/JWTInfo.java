@@ -3,11 +3,12 @@ package com.github.wxiaoqi.security.common.util.jwt;
 import com.github.wxiaoqi.security.common.util.UUIDUtils;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Created by ace on 2017/9/10.
  */
-public class JWTInfo implements Serializable,IJWTInfo {
+public class JWTInfo implements Serializable, IJWTInfo {
     private String username;
     private String userId;
     private String name;
@@ -20,7 +21,7 @@ public class JWTInfo implements Serializable,IJWTInfo {
         this.tokenId = UUIDUtils.generateShortUuid();
     }
 
-    public JWTInfo(String username, String userId, String name,String tokenId) {
+    public JWTInfo(String username, String userId, String name, String tokenId) {
         this.username = username;
         this.userId = userId;
         this.name = name;
@@ -75,10 +76,10 @@ public class JWTInfo implements Serializable,IJWTInfo {
 
         JWTInfo jwtInfo = (JWTInfo) o;
 
-        if (username != null ? !username.equals(jwtInfo.username) : jwtInfo.username != null) {
+        if (!Objects.equals(username, jwtInfo.username)) {
             return false;
         }
-        return userId != null ? userId.equals(jwtInfo.userId) : jwtInfo.userId == null;
+        return Objects.equals(userId, jwtInfo.userId);
 
     }
 

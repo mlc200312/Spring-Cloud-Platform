@@ -13,7 +13,6 @@ import org.apache.commons.lang3.StringUtils;
  */
 @Slf4j
 public class AddressUtils {
-
     // IP地址查询
     public static final String IP_URL = "http://whois.pconline.com.cn/ipJson.jsp";
 
@@ -35,10 +34,16 @@ public class AddressUtils {
             JSONObject obj = JSONObject.parseObject(rspStr);
             String region = obj.getString("pro");
             String city = obj.getString("city");
-            return String.format("%s %s", region, city);
+            String addr = obj.getString("addr");
+            return String.format("%s %s %s", region, city, addr);
         } catch (Exception e) {
             log.error("获取地理位置异常 {}", ip);
         }
         return address;
+    }
+
+    public static void main(String[] args) {
+        String realAddressByIP = AddressUtils.getRealAddressByIP("46.103.232.74");
+        log.info("获取地理位置 {}", realAddressByIP);
     }
 }

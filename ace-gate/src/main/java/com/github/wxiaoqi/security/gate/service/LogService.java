@@ -7,5 +7,7 @@ import com.github.wxiaoqi.security.api.vo.log.LogInfo;
  * @create 2020/7/23.
  */
 public interface LogService {
+
     void saveLog(LogInfo info);
+
 }

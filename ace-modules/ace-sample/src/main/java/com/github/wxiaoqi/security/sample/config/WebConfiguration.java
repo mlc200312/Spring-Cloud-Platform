@@ -14,18 +14,17 @@ import java.util.Collections;
 @Configuration("admimWebConfig")
 @Primary
 public class WebConfiguration implements WebMvcConfigurer {
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        // 配置用户认证拦截器
+        registry.addInterceptor(getUserAuthRestInterceptor()).addPathPatterns(getIncludePathPatterns());
+    }
+
     @Bean
     GlobalExceptionHandler getGlobalExceptionHandler() {
         return new GlobalExceptionHandler();
     }
-
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-  
-    // 配置用户认证拦截器    
-        registry.addInterceptor(getUserAuthRestInterceptor()). addPathPatterns(getIncludePathPatterns());
-    }
-
 
     @Bean
     UserAuthRestInterceptor getUserAuthRestInterceptor() {
@@ -34,6 +33,7 @@ public class WebConfiguration implements WebMvcConfigurer {
 
     /**
      * 需要用户和服务认证判断的路径
+     *
      * @return
      */
     private ArrayList<String> getIncludePathPatterns() {

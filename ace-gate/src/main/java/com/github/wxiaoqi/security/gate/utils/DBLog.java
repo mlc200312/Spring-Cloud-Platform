@@ -18,20 +18,21 @@ import java.util.concurrent.LinkedBlockingQueue;
 @Slf4j
 public class DBLog extends Thread {
     private static DBLog dblog = null;
-    private static BlockingQueue<LogInfo> logInfoQueue = new LinkedBlockingQueue<LogInfo>(1024);
+    private static BlockingQueue<LogInfo> logInfoQueue = new LinkedBlockingQueue<>(1024);
 
     public LogService getLogService() {
         return logService;
     }
 
     public DBLog setLogService(LogService logService) {
-        if(this.logService==null) {
+        if (this.logService == null) {
             this.logService = logService;
         }
         return this;
     }
 
     private LogService logService;
+
     public static synchronized DBLog getInstance() {
         if (dblog == null) {
             dblog = new DBLog();
@@ -53,14 +54,14 @@ public class DBLog extends Thread {
 
     @Override
     public void run() {
-        List<LogInfo> bufferedLogList = new ArrayList<LogInfo>(); // 缓冲队列
+        List<LogInfo> bufferedLogList = new ArrayList<>(); // 缓冲队列
         while (true) {
             try {
                 bufferedLogList.add(logInfoQueue.take());
                 logInfoQueue.drainTo(bufferedLogList);
                 if (bufferedLogList != null && bufferedLogList.size() > 0) {
                     // 写入日志
-                    for(LogInfo log:bufferedLogList){
+                    for (LogInfo log : bufferedLogList) {
                         logService.saveLog(log);
                     }
                 }

@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * Created by ace on 2017/9/10.
  */
-public class RsaKeyHelper {
+public class RsaHelper {
     /**
      * 获取公钥
      *
@@ -107,10 +107,9 @@ public class RsaKeyHelper {
      * 生存rsa公钥
      *
      * @param password
-     * @throws IOException
      * @throws NoSuchAlgorithmException
      */
-    public static byte[] generatePublicKey(String password) throws IOException, NoSuchAlgorithmException {
+    public static byte[] generatePublicKey(String password) throws NoSuchAlgorithmException {
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
         SecureRandom secureRandom = new SecureRandom(password.getBytes());
         keyPairGenerator.initialize(1024, secureRandom);
@@ -122,10 +121,9 @@ public class RsaKeyHelper {
      * 生存rsa公钥
      *
      * @param password
-     * @throws IOException
      * @throws NoSuchAlgorithmException
      */
-    public static byte[] generatePrivateKey(String password) throws IOException, NoSuchAlgorithmException {
+    public static byte[] generatePrivateKey(String password) throws NoSuchAlgorithmException {
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
         SecureRandom secureRandom = new SecureRandom(password.getBytes());
         keyPairGenerator.initialize(1024, secureRandom);
@@ -133,14 +131,14 @@ public class RsaKeyHelper {
         return keyPair.getPrivate().getEncoded();
     }
 
-    public static Map<String, byte[]> generateKey(String password) throws IOException, NoSuchAlgorithmException {
+    public static Map<String, byte[]> generateKey(String password) throws NoSuchAlgorithmException {
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
         SecureRandom secureRandom = new SecureRandom(password.getBytes());
         keyPairGenerator.initialize(1024, secureRandom);
         KeyPair keyPair = keyPairGenerator.genKeyPair();
         byte[] publicKeyBytes = keyPair.getPublic().getEncoded();
         byte[] privateKeyBytes = keyPair.getPrivate().getEncoded();
-        Map<String, byte[]> map = new HashMap<String, byte[]>();
+        Map<String, byte[]> map = new HashMap<>();
         map.put("pub", publicKeyBytes);
         map.put("pri", privateKeyBytes);
         return map;
@@ -155,11 +153,9 @@ public class RsaKeyHelper {
     }
 
     public static void main(String[] args) throws NoSuchAlgorithmException {
-        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
-        SecureRandom secureRandom = new SecureRandom("123".getBytes());
-        keyPairGenerator.initialize(1024, secureRandom);
-        KeyPair keyPair = keyPairGenerator.genKeyPair();
-        System.out.println(keyPair.getPublic().getEncoded());
+        Map<String, byte[]> stringMap = RsaHelper.generateKey("123123");
+        System.out.println(RsaHelper.toHexString(stringMap.get("pub")));
+        System.out.println(RsaHelper.toHexString(stringMap.get("pri")));
     }
 
 }

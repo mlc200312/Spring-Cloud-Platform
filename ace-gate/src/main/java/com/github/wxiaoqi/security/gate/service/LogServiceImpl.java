@@ -21,8 +21,13 @@ public class LogServiceImpl implements LogService {
 
     @Override
     public void saveLog(LogInfo info) {
-        Mono<Void> mono = webClientBuilder.build().
-                post().uri("http://ace-admin/api/log/save").body(BodyInserters.fromValue(info)).retrieve().bodyToMono(Void.class);
+        Mono<Void> mono = webClientBuilder
+                .build()
+                .post()
+                .uri("http://ace-admin/api/log/save")
+                .body(BodyInserters.fromValue(info))
+                .retrieve()
+                .bodyToMono(Void.class);
         // 输出结果
         log.debug(String.valueOf(mono.block()));
     }

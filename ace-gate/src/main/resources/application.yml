@@ -17,18 +17,18 @@ feign:
 
 spring:
   application:
-      name: ace-gate
+    name: ace-gate
   redis:
-      database: 2
-      host: 127.0.0.1
-      jedis:
-        pool:
-            max-active: 20
+    database: 2
+    host: 127.0.0.1
+    jedis:
+      pool:
+        max-active: 20
   rabbitmq:
-      host: ${RABBIT_MQ_HOST:localhost}
-      port:  ${RABBIT_MQ_PORT:5672}
-      username: guest
-      password: guest
+    host: ${RABBIT_MQ_HOST:localhost}
+    port: ${RABBIT_MQ_PORT:5672}
+    username: guest
+    password: guest
   sleuth:
     enabled: false
     http:
@@ -49,15 +49,15 @@ spring:
             enabled: false
     gateway:
       default-filters:
-         - DedupeResponseHeader=Access-Control-Allow-Origin
+        - DedupeResponseHeader=Access-Control-Allow-Origin
       globalcors:
-         add-to-simple-url-handler-mapping: true
-         corsConfigurations:
-           '[/**]':
-             allowed-origins: "http://localhost:9572"
-             allowed-methods: "*"
-             allowed-headers: "*"
-             allow-credentials: true
+        add-to-simple-url-handler-mapping: true
+        corsConfigurations:
+          '[/**]':
+            allowed-origins: "http://localhost:9572"
+            allowed-methods: "*"
+            allowed-headers: "*"
+            allow-credentials: true
       discovery:
         locator:
           lowerCaseServiceId: true
@@ -68,18 +68,18 @@ spring:
           uri: lb://ace-admin
           order: 8000
           predicates:
-          - RequestBody=true
-          - Path=/api/auth/**
+            - RequestBody=true
+            - Path=/api/auth/**
           filters:
-          - StripPrefix=2
+            - StripPrefix=2
         - id: ace-admin
           uri: lb://ace-admin
           order: 8001
           predicates:
-          - RequestBody=true
-          - Path=/api/admin/**
+            - RequestBody=true
+            - Path=/api/admin/**
           filters:
-          - StripPrefix=2
+            - StripPrefix=2
         - id: ace-generator
           uri: lb://ace-generator
           order: 8001
@@ -138,7 +138,7 @@ ribbon:
   OkToRetryOnAllOperations: false
 
 hystrix:
-  threadpool:
+  thread-pool:
     default:
       coreSize: 1000 ##并发执行的最大线程数，默认10
       maxQueueSize: 1000 ##BlockingQueue的最大队列数

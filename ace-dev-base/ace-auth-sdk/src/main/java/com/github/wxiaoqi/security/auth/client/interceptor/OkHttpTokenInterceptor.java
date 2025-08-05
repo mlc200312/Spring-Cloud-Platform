@@ -23,14 +23,12 @@ public class OkHttpTokenInterceptor implements Interceptor {
     @Lazy
     private UserAuthConfig userAuthConfig;
 
-
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request newRequest = chain.request()
-                    .newBuilder()
-                    .header(userAuthConfig.getTokenHeader(), BaseContextHandler.getToken())
-                    .build();
-
+                .newBuilder()
+                .header(userAuthConfig.getTokenHeader(), BaseContextHandler.getToken())
+                .build();
         Response response = chain.proceed(newRequest);
 //        if (HttpStatus.FORBIDDEN.value() == response.code()) {
 //            if (response.body().string().contains(String.valueOf(CommonConstants.EX_CLIENT_INVALID_CODE))) {

@@ -40,5 +40,4 @@ public class ToolBootstrap {
     public static void main(String[] args) {
         new SpringApplicationBuilder(ToolBootstrap.class).run(args);
     }
-
 }

@@ -35,7 +35,7 @@ public class TreeNode {
         this.parentId = parentId;
     }
 
-    public void add(TreeNode node){
+    public void add(TreeNode node) {
         children.add(node);
     }
 }
